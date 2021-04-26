@@ -12,6 +12,8 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(expressValidator());
 
+ 
+
 app.use('/api', Router)
 
 var port = process.env.port || 3001;
