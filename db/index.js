@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const local="mongodb://127.0.0.1:27017/contents"
-const online ='mongodb+srv://myaimateuser:myaimateuser@tutorial.bb9zo.mongodb.net/tutorial?retryWrites=true&w=majority'
+const online ="mongodb+srv://myaimate:dbpass@myaimate.yudzv.mongodb.net/contents?retryWrites=true&w=majority"
 mongoose
-    .connect(local, { 
+    .connect(online, { 
         useNewUrlParser: true,
         useCreateIndex:true,
         useUnifiedTopology:true 

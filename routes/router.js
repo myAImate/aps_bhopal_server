@@ -28,10 +28,10 @@ router.post("/admin/create-user",UserHandler.createUser)
 
 router.get('/v1',(req,res)=>{
     return res.status(200).json({
-        "app-name":"Myaimate-Dashboard-Server",
+        "app-name":"Myaimate-APS-Bhopal-Server",
         "version":"0.0.1",
-        "description":"Server for myaimate dashboard",
-        "createdAt":new Date(2021, 04, 21, 00, 20)
+        "description":"Server for APS Bhopal by myAImate",
+        "createdAt":new Date(2021, 06, 20, 00, 20)
     })
 });
  
