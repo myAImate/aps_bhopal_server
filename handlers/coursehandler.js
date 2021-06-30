@@ -62,7 +62,7 @@ exports.fetchUserCourses=async(req,res)=>{
     var chapter_unlocked=null;
     var topicsRes=[];
 
-    await StatusController.fetchStatus(body.user_id).then(async status=>{
+    await StatusController.fetchStatus(body.user_id).then(async (status)=>{
         topic_unlocked = status[0].topic_unlocked;
         chapter_unlocked = status[0].chapter_unlocked;
        
@@ -83,7 +83,7 @@ exports.fetchUserCourses=async(req,res)=>{
                 
                 if(topic_unlocked[TP_ID] && topic_unlocked[TP_ID].status ==="UNLOCKED"){
                     topicObj={...topics[topic]._doc,...topic_unlocked[TP_ID]}
-                   // console.log(topicObj)
+                    //console.log(topicObj)
                 }else{
                     topicObj={...topics[topic]._doc,status:"LOCKED"}
                    // console.log(topicObj)
@@ -100,7 +100,7 @@ exports.fetchUserCourses=async(req,res)=>{
                             
                             if( chapter_unlocked[CH_ID] &&  chapter_unlocked[CH_ID].status ==="UNLOCKED"){
                                 Chap_List.push({...chapters[chap]._doc,...chapter_unlocked[CH_ID]})
-                              //  console.log(CH_ID,"is Unlocked")
+                            //  console.log(CH_ID,"is Unlocked")
                             }else{
                                 Chap_List.push({...chapters[chap]._doc,status:"LOCKED"})
                               //  console.log(CH_ID,"is Locked")

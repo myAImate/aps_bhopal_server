@@ -23,6 +23,7 @@ exports.createStatus=(req,res)=>{
     
 } 
 
+ 
 exports.fetchStatus=(user_id)=>{
     return new Promise(async(resolve,reject)=>{
         await Status.find({user_id:user_id}).then((status)=>{
