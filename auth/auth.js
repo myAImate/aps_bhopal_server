@@ -12,7 +12,7 @@ exports.resolveToken=async(req,res,next)=>{
     
        
     }
-    await Token.find({token:req.headers["x-auth-token"]}).then(async (token_res)=>{
+    await Token.find({_id:req.headers["x-auth-token"]}).then(async (token_res)=>{
         req.body.user_id = token_res[0].user_id 
         await User.findById({_id:token_res[0].user_id}).then( user =>{
             if(!!user){
@@ -53,7 +53,7 @@ exports.verifyToken=async (req,res)=>{
             
         })
     }
-    await Token.find({token:req.headers['x-auth-token']}).then(async token_res=>{
+    await Token.find({_id:req.headers['x-auth-token']}).then(async token_res=>{
 
         if(token_res.length == 0){
 

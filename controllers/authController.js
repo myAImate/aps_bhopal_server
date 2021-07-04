@@ -26,7 +26,7 @@ exports.loginPost = function(req, res, next) {
         var isMatch= user.password === req.body.password ;
 
         if (!isMatch) return res.status(403).send({ msg: 'Wrong password!!!' });
-        var _token=crypto.randomBytes(16).toString('hex')    
+           
         
         let res_data={
             firstName:user.firstName,
@@ -35,7 +35,7 @@ exports.loginPost = function(req, res, next) {
             class:user.class
         }
 
-        var token = new Token({ user_id: user._id, token: _token });
+        var token = new Token({ user_id: user._id  });
         
         token.save().then((tk,err)=>{
             if(err){
@@ -46,7 +46,7 @@ exports.loginPost = function(req, res, next) {
             }
             res.status(200).json({
                 status:true,
-                token:tk.token,
+                token:tk._id,
                 data:res_data
                 
               });
