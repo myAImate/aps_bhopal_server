@@ -22,8 +22,8 @@ router.post("/add/status",Status.createStatus)
 
 
 
-router.post("/fetch-courses",auth.resolveToken,CourseHandler.fetchUserCourses)
-router.get(`/fetch/contentlist/:id`,auth.resolveToken,ContentList.fetchContentList)
+router.post("/fetch-courses", CourseHandler.fetchUserCourses)
+router.get(`/fetch/contentlist/:id`, ContentList.fetchContentList)
 
 router.post("/admin/user",Authenticate.signupPost)
 router.post("/user/login",Authenticate.loginPost)
