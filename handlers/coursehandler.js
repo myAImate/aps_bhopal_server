@@ -138,3 +138,135 @@ exports.fetchUserCourses=async(req,res)=>{
     
 
 }
+
+exports.forceFetchUserCourses=async(req,res)=>{
+    var topic_unlocked={
+        "topicID$60cedf467c1a04fc8e0f05ae": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        }
+    }
+    var chapter_unlocked= {
+        "chapterID$60cee812d1184819c6c66911": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        },
+        "chapterID$60cee812d1184819c6c66912": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        },
+        "chapterID$60cee813d1184819c6c66913": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        },
+        "chapterID$60cee813d1184819c6c66914": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        },
+        "chapterID$60cee813d1184819c6c6691a": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        },
+        "chapterID$60cee813d1184819c6c66918": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        },
+        "chapterID$60cee814d1184819c6c6691d": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        },
+        "chapterID$60cee813d1184819c6c6691c": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee813d1184819c6c6691b": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee813d1184819c6c66916": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee813d1184819c6c66915": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee813d1184819c6c66919": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee814d1184819c6c6691e": {
+            "status": "UNLOCKED"
+        }
+    } 
+    
+    var topicsRes=[];
+ 
+    await TopicController.fetchTopicsByClass("NINETH").then(async(topics)=>{
+        if(topics.length >0){
+            
+            for(let topic in topics){
+                var topicObj=null;
+                var tp_id=topics[topic]._id;
+                var TP_ID=`topicID$${tp_id}`;
+                
+                if(topic_unlocked[TP_ID] && topic_unlocked[TP_ID].status ==="UNLOCKED"){
+                    topicObj={...topics[topic]._doc,...topic_unlocked[TP_ID]}
+                    //console.log(topicObj)
+                }else{
+                    topicObj={...topics[topic]._doc,status:"LOCKED"}
+                   // console.log(topicObj)
+
+                }
+                
+                var Chap_List=[];
+                await ChapterController.fetchChaptersByTopicId(topics[topic]._id).then((chapters)=>{
+                      
+
+                    for (let chap in chapters){
+                            var ch_id=chapters[chap]._id;
+                            var CH_ID=`chapterID$${ch_id}`;
+                            
+                            if( chapter_unlocked[CH_ID] &&  chapter_unlocked[CH_ID].status ==="UNLOCKED"){
+                                Chap_List.push({...chapters[chap]._doc,...chapter_unlocked[CH_ID]})
+                            //  console.log(CH_ID,"is Unlocked")
+                            }else{
+                                Chap_List.push({...chapters[chap]._doc,status:"LOCKED"})
+                              //  console.log(CH_ID,"is Locked")
+                            }
+                        }     
+                })
+
+                topicsRes.push({...topicObj,chapter_list:Chap_List})
+            }
+            res.status(200).json({
+                status:true,
+                message:"Fetch Successfull",
+                data:topicsRes
+            })
+        }else{
+            res.status(404).json({
+                Error:"No_Topic_Found",
+                message:"Topics Not available"
+            })  
+        }
+
+    }).catch(err=>{
+        res.status(403).json({
+            Error:err,
+            message:"Failed to fetch Topics"
+        })
+    })
+
+     
+
+    
+    
+    
+
+    
+
+}

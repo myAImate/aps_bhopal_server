@@ -23,6 +23,7 @@ router.post("/add/status",Status.createStatus)
 
 
 router.post("/fetch-courses", CourseHandler.fetchUserCourses)
+router.get("/fetch-courses-force", CourseHandler.forceFetchUserCourses)
 router.get(`/fetch/contentlist/:id`, ContentList.fetchContentList)
 
 router.post("/admin/user",Authenticate.signupPost)
