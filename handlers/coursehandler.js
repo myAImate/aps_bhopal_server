@@ -140,13 +140,20 @@ exports.fetchUserCourses=async(req,res)=>{
 }
 
 exports.forceFetchUserCourses=async(req,res)=>{
+    
     var topic_unlocked={
         "topicID$60cedf467c1a04fc8e0f05ae": {
             "status": "UNLOCKED",
             "unlockedBy": "admin",
             "unlockedAt": "01/06/2021"
+        },
+        "topicID$60cee0037c1a04fc8e0f05af": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
         }
     }
+     
     var chapter_unlocked= {
         "chapterID$60cee812d1184819c6c66911": {
             "status": "UNLOCKED",
@@ -200,7 +207,38 @@ exports.forceFetchUserCourses=async(req,res)=>{
         },
         "chapterID$60cee814d1184819c6c6691e": {
             "status": "UNLOCKED"
-        }
+        },
+
+        "chapterID$60cee814d1184819c6c6691f": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee814d1184819c6c66920": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee814d1184819c6c66921": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee814d1184819c6c66922": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee814d1184819c6c66923": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee814d1184819c6c66924": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee814d1184819c6c66925": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee814d1184819c6c66926": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee815d1184819c6c66927": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee815d1184819c6c66928": {
+            "status": "UNLOCKED"
+        },
     } 
     
     var topicsRes=[];
@@ -215,10 +253,10 @@ exports.forceFetchUserCourses=async(req,res)=>{
                 
                 if(topic_unlocked[TP_ID] && topic_unlocked[TP_ID].status ==="UNLOCKED"){
                     topicObj={...topics[topic]._doc,...topic_unlocked[TP_ID]}
-                    //console.log(topicObj)
+                   // console.log(topicObj)
                 }else{
                     topicObj={...topics[topic]._doc,status:"LOCKED"}
-                   // console.log(topicObj)
+                   //  console.log(topicObj)
 
                 }
                 
@@ -235,7 +273,7 @@ exports.forceFetchUserCourses=async(req,res)=>{
                             //  console.log(CH_ID,"is Unlocked")
                             }else{
                                 Chap_List.push({...chapters[chap]._doc,status:"LOCKED"})
-                              //  console.log(CH_ID,"is Locked")
+                             // console.log(CH_ID,"is Locked")
                             }
                         }     
                 })
