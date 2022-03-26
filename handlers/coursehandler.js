@@ -156,6 +156,16 @@ exports.forceFetchUserCourses=async(req,res)=>{
             "status": "UNLOCKED",
             "unlockedBy": "admin",
             "unlockedAt": "01/01/2022"
+        }, 
+        "topicID$60cee04c7c1a04fc8e0f05b1": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/06/2021"
+        },
+        "topicID$60cee05a7c1a04fc8e0f05b2": {
+            "status": "UNLOCKED",
+            "unlockedBy": "admin",
+            "unlockedAt": "01/01/2022"
         }
     }
      
@@ -264,6 +274,37 @@ exports.forceFetchUserCourses=async(req,res)=>{
         "chapterID$61d1e6440b9b1a5290c63125": {
             "status": "UNLOCKED"
         },
+            
+        "chapterID$60cee815d1184819c6c66930": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee815d1184819c6c66931": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee816d1184819c6c66932": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee816d1184819c6c66933": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee816d1184819c6c66934": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee816d1184819c6c66935": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee816d1184819c6c66936": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee816d1184819c6c66937": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee816d1184819c6c66938": {
+            "status": "UNLOCKED"
+        },
+        "chapterID$60cee816d1184819c6c66939": {
+            "status": "UNLOCKED"
+        }
 
 
     } 
